@@ -1,0 +1,16 @@
+.Item{
+    height: 50px;
+    background: #e1e4e6;
+}
+
+.Content{
+    line-height: 50px;
+    margin-left: 50px;
+}
+
+.FolderName{
+    font-family: "微软雅黑 Light";
+    font-size: 20px;
+    float: left;
+    margin-left: 10px;
+}

@@ -1,0 +1,28 @@
+.Wrapper{
+    float: left;
+    /*border: 1px solid #000;*/
+    width: 300px;
+    height: 100%;
+    background: #fafafa;
+}
+
+.Title{
+    margin: 15px 10px;
+    text-align: center;
+}
+
+.Home{
+    font-family: "微软雅黑 Light";
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.Folder{
+    margin-top: 20px;
+}
+
+hr{
+    color: #e1e4e6;
+    margin: 0 10px;
+}
