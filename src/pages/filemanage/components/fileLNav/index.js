@@ -1,8 +1,7 @@
 import React from 'react';
-import FolderItem from '@/pages/filemanage/fileLNav/folderItem';
+import FolderItem from '@/pages/filemanage/components/fileLNav/folderItem';
 import { connect } from 'dva';
-import icon from'../statics/iconfont/iconfont.css'
-
+import icon from '../../statics/iconfont/iconfont.css'
 import style from './index.css'
 
 function FileLNav(props){
@@ -12,21 +11,24 @@ function FileLNav(props){
         <span className={icon.iconfont} style={{fontSize: "30px"}} >&#xe666;</span>
         <a className={style.Home}>FILE MANAGE</a>
       </div>
-      <hr/>
+      <hr className={style.Hr}/>
       <div className={style.Folder}>
-        {/*{props.name.map((item) => {*/}
-        {/*  return <FolderItem></FolderItem>*/}
-        {/*})}*/}
+        {props.FolderName.map((item,index) => {
+          return <FolderItem key={item} filename={item} isclick={props.IsClick[index]} itemindex={index}> </FolderItem>
+        })}
       </div>
 
     </div>
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ folder }) {
   return {
-    FolderName: state.name
+    FolderName: folder.name,
+    IsClick: folder.isclick
   };
 }
+
+
 
 export default connect(mapStateToProps)(FileLNav);

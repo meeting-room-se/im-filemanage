@@ -1,7 +1,7 @@
 .Wrapper{
     float: left;
     /*border: 1px solid #000;*/
-    width: 300px;
+    width: 20%;
     height: 100%;
     background: #fafafa;
 }
@@ -9,6 +9,7 @@
 .Title{
     margin: 15px 10px;
     text-align: center;
+    height: 40px;
 }
 
 .Home{
@@ -16,13 +17,14 @@
     font-weight: bold;
     font-size: 25px;
     margin-left: 10px;
+    line-height: 40px;
 }
 
 .Folder{
     margin-top: 20px;
 }
 
-hr{
-    color: #e1e4e6;
+.Hr{
+    color: darkgrey;
     margin: 0 10px;
 }

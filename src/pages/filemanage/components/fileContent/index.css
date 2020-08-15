@@ -1,0 +1,18 @@
+.Wrapper{
+    float: right;
+    height: 100%;
+    /*background: #fafafa;*/
+    border: 1px solid #000000;
+    width: 79%;
+}
+
+.Title{
+    height: 70px;
+    background: #fafafa;
+    border: 1px solid darkgrey;
+}
+
+.Hr{
+    color: #e1e4e6;
+    margin: 0 10px;
+}
