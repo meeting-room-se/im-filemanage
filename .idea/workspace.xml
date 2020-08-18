@@ -19,28 +19,33 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/lz" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="510e4b82-6eaf-4bf1-b558-5571c34ac55b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/folderItem/index.js" afterDir="false" />
+    <list default="true" id="510e4b82-6eaf-4bf1-b558-5571c34ac55b" name="Default Changelist" comment="增加左边栏按钮，">
+      <change afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/filemanage/models/fileTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.umirc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.umirc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileContent/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileContent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileLNav/folderItem/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/folderItem/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileLNav/folderItem/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileLNav/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileLNav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileUNav/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileUNav/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/fileUNav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileUNav/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileUNav/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileUNav/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/model/folderItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/models/folderItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/folderItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/models/folderItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.eot" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.woff" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.woff2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +77,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -82,11 +87,12 @@
     <property name="ts.external.directory.path" value="D:\WebStorm 2020.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\statics\iconfont" />
+      <recent name="E:\react 项目\mr-fronted\src\pages" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\components" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\react 项目\mr-fronted\src\pages" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -107,7 +113,9 @@
       <workItem from="1597130665123" duration="365000" />
       <workItem from="1597381944637" duration="879000" />
       <workItem from="1597382855810" duration="847000" />
-      <workItem from="1597450202986" duration="12021000" />
+      <workItem from="1597450202986" duration="12734000" />
+      <workItem from="1597622647438" duration="12890000" />
+      <workItem from="1597708835748" duration="685000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1597383350757</created>
@@ -116,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597383350757</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加左边栏按钮，">
+      <created>1597462772464</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597462772464</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +148,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/lz" />
                       </list>
                     </value>
                   </entry>
@@ -163,12 +178,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="第一次提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="第一次提交" />
+    <MESSAGE value="增加左边栏按钮，" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加左边栏按钮，" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="425" y="187" key="run.anything.popup" timestamp="1597461966177">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597709527015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1597461966177" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597709527015" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1597626022109">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1597626022109" />
   </component>
 </project>

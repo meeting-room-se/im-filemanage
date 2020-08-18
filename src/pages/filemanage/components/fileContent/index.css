@@ -1,18 +1,54 @@
 .Wrapper{
-    float: right;
+    position: absolute;
+    right: 0;
     height: 100%;
-    /*background: #fafafa;*/
-    border: 1px solid #000000;
+    background: #fff;
+    border: 2px solid #efefef;
     width: 79%;
 }
 
 .Title{
     height: 70px;
     background: #fafafa;
-    border: 1px solid darkgrey;
+    border-bottom: 1px solid #efefef;
 }
 
 .Hr{
     color: #e1e4e6;
     margin: 0 10px;
+}
+
+.SearchInput{
+    width: 40%;
+    height: 40px;
+    margin-left: 100px;
+    margin-top: 15px;
+}
+
+.SearchBtn{
+    position: absolute;
+    height: 38px;
+    margin-left: 10px;
+    margin-top: 16px;
+
+}
+
+.More{
+    float: right;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 100px;
+}
+
+.Content{
+    background: #fff;
+    position: relative;
+    width: 100%;
+}
+
+.FolderName{
+    margin-top: 20px;
+    margin-left: 50px;
 }
