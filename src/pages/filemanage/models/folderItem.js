@@ -1,44 +1,57 @@
-import axios from 'axios'
+import { getFolders } from '@/pages/filemanage/service';
+import { setState } from '@/pages/filemanage/Utils/state';
+
 export default {
   namespace: 'folderItem',
   state: {
-    name: ['a','b'],
+    name: [],
     isclick: [true,false]
   },
   reducers: {
-    getFolders(state){
-      axios.get('http://192.168.2.206:8080/list?path=/')
-        .then((res) => {
-          if(res.status === 200){
-
-          }else{
-            console.log("参数错误");
-          }
-        })
-        .catch(() => {
-          console.log("请求失败");
-        })
+    // 改变左边栏文件夹列表
+    changeFolderList(state,{ payload }){
+      console.log("修改文件夹列表");
+      const name = [];
+      const isclick = [];
+      console.log("payload:"+payload);
+      for(var i in payload){
+        console.log(payload[i]);
+        name.push(payload[i].name);
+        isclick.push(false);
+      }
+      return setState(state,{
+        "name": name,
+        "isclick": isclick
+      });
     },
-
-    changeClick(state,{payload}){
+    // 改变文件夹点击状态
+    changeClick(state,{ payload }){
       console.log("修改文件夹点击状态");
       const isclick = state.isclick.fill(false);
       isclick.splice(payload,1,true);
-      // const newState = JSON.parse(JSON.stringify(state));
-      // newState.isclick = isclick;
-      // return newState;
-      return {
-        ...state,
-        isclick:isclick
-      }
+      return setState(state,{
+        "isclick": isclick
+      });
     }
   },
+  effects: {
+    *getFolders({ payload }, { call, put }){
+      const data = yield call(getFolders,payload);
+      console.log(data);
+      yield put({
+        type: 'changeFolderList',
+        payload: data
+      })
+    }
+  }
+  ,
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname}) => {
         if(pathname === '/filemanage'){
           dispatch({
-            type: 'getFolders'
+            type: 'getFolders',
+            payload: '/'
           })
         }
       })

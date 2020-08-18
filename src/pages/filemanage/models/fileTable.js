@@ -47,6 +47,13 @@ export default {
       const newState = JSON.parse(JSON.stringify(state));
       newState.isclick = isclick;
       return newState;
+    },
+
+    changeTable(state,{ payload }){
+      console.log("修改文件列表");
+
     }
+
+
   }
 };

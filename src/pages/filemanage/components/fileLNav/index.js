@@ -9,7 +9,7 @@ function FileLNav(props){
     <div className={style.Wrapper}>
       <div className={style.Title}>
         <span className={icon.iconfont} style={{fontSize: "30px"}} >&#xe666;</span>
-        <a className={style.Home} href={"#"}>FILE MANAGE</a>
+        <a className={style.Home} href={"/filemanage"}>FILE MANAGE</a>
       </div>
       <hr className={style.Hr}/>
       <div className={style.Folder}>
