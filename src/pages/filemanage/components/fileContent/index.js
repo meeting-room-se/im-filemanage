@@ -17,17 +17,17 @@ function FileContent(props){
       </div>
       {/*表格*/}
       <div className={styles.Content}>
-        <h1 className={styles.FolderName}>foldername</h1>
+        <h1 className={styles.FolderName}>folderpath:<span>/</span></h1>
         <Table columns={props.columns} dataSource={props.data} />
       </div>
     </div>
   )
 }
 
-function mapStateToProps({ fileContent }){
+function mapStateToProps({ tableContent }){
   return {
-    columns: fileContent.columns,
-    data: fileContent.data
+    columns: tableContent.columns,
+    data: tableContent.data
   }
 }
 

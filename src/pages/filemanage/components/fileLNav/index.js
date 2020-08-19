@@ -12,6 +12,7 @@ function FileLNav(props){
         <a className={style.Home} href={"/filemanage"}>FILE MANAGE</a>
       </div>
       <hr className={style.Hr}/>
+
       <div className={style.Folder}>
         {props.FolderName.map((item,index) => {
           return <FolderItem key={item} filename={item} isclick={props.IsClick[index]} itemindex={index}> </FolderItem>
@@ -22,10 +23,10 @@ function FileLNav(props){
   )
 }
 
-function mapStateToProps({ folderItem }) {
+function mapStateToProps(state) {
   return {
-    FolderName: folderItem.name,
-    IsClick: folderItem.isclick
+    FolderName: state.folderItem.name,
+    IsClick: state.folderItem.isclick
   };
 }
 

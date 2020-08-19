@@ -1,7 +1,7 @@
-import { Button } from 'antd'
-
+import { Button } from 'antd';
+import { setState } from '@/pages/filemanage/Utils/state';
 export default {
-  namespace: 'fileContent',
+  namespace: 'tableContent',
   state: {
     columns: [
       {
@@ -37,23 +37,14 @@ export default {
         render: () => <Button type={"primary"}>Delete</Button>,
       },
     ],
-    data: []
+    data: [],
+    path: ''
   },
   reducers: {
-    changeClick(state,{payload}){
-      console.log("修改文件夹点击状态");
-      const isclick = state.isclick.fill(false);
-      isclick.splice(payload,1,true);
-      const newState = JSON.parse(JSON.stringify(state));
-      newState.isclick = isclick;
-      return newState;
-    },
-
+    // changeData(state,)
     changeTable(state,{ payload }){
-      console.log("修改文件列表");
-
+      console.log(payload);
+      return setState(state,payload);
     }
-
-
   }
-};
+}
