@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import FolderItem from '@/pages/filemanage/components/fileLNav/folderItem';
+import JsxParser from 'react-jsx-parser'
 import { connect } from 'dva';
 import icon from '../../statics/iconfont/iconfont.css'
 import style from './index.css'
+
+
+function getFolders(list,index){
+  if(list.length === 0){
+    return "";
+  }else{
+    let result='';
+    for(const i in list){
+      const children = getFolders(list[i].children,index+1);
+      result = result+
+        "<FolderItem name='"+list[i].name+"' isempty='"+list[i].isempty+"' isclick='"+list[i].isclick+"' index='"+index+"' isdevelop='"+list[i].isdevelop+"' path='"+list[i].path+"'> </FolderItem>\ "
+        +children;
+    }
+    return result;
+  }
+
+
+}
 
 function FileLNav(props){
   return (
@@ -14,22 +33,20 @@ function FileLNav(props){
       <hr className={style.Hr}/>
 
       <div className={style.Folder}>
-        {props.FolderName.map((item,index) => {
-          return <FolderItem key={item} filename={item} isclick={props.IsClick[index]} itemindex={index}> </FolderItem>
-        })}
+        <JsxParser
+          components={{ FolderItem }}
+          jsx={getFolders(props.list,0)}
+        />
       </div>
 
     </div>
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ folderList }) {
   return {
-    FolderName: state.folderItem.name,
-    IsClick: state.folderItem.isclick
+    list: folderList.list
   };
 }
-
-
 
 export default connect(mapStateToProps)(FileLNav);

@@ -52,3 +52,28 @@ export const getTableData = (data) => {
   }
   return res;
 }
+// path:/test1/test2  修改list文件列表中，path路径的文件项的属性
+export const setFolderProps = (list,path,map) => {
+  if(path === '' || path === null){
+    return
+  }
+  const pathlist = path.split('/');
+  pathlist.splice(0,1)
+  if(pathlist.length === 1){
+    for(const re in list){
+      if(pathlist[0] === list[re].name){
+        for(const key in map){
+          list[re][key] = map[key];
+          return
+        }
+      }
+    }
+  }else{
+    const p = pathlist[0];
+    for(const j in list) {
+      if (p === list[j].name) {
+        setFolderProps(list[j].children,path.slice(p.length+1,path.length),map)
+      }
+    }
+  }
+}

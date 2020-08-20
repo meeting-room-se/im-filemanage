@@ -26,11 +26,11 @@ export default {
         type: 'changeFolder',
         payload: data_
       });
-      const folders = data_.folders;
-      yield put({
-        type: 'folderItem/initFolderItem',
-        payload: folders
-      })
+      // const folders = data_.folders;
+      // yield put({
+      //   type: 'folderItem/initFolderItem',
+      //   payload: folders
+      // })
     },
     *initFolderItem(action,{ put, select }) {
       const folders = yield select(state => state.currentFolder.folders);
@@ -60,13 +60,13 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname}) => {
         if(pathname === '/filemanage'){
-          dispatch({
-            type: 'getFolder',
-            payload: '/'
-          });
-          dispatch({
-            type: 'initFiles',
-          })
+          // dispatch({
+          //   type: 'initFolderItem',
+          //   payload: '/'
+          // });
+          // dispatch({
+          //     type: 'initFiles',
+          // })
         }
       })
     }

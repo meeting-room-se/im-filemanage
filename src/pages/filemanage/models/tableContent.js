@@ -42,9 +42,15 @@ export default {
   },
   reducers: {
     // changeData(state,)
-    changeTable(state,{ payload }){
-      console.log(payload);
-      return setState(state,payload);
+    // changeTable(state,{ payload }){
+    //   console.log(payload);
+    //   return setState(state,payload);
+    // }
+  },
+  effects: {
+    *changeTable(action, { select }) {
+      const data =
+      console.log()
     }
   }
 }

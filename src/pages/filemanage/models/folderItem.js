@@ -3,8 +3,10 @@ import { setState, getFolderName } from '@/pages/filemanage/Utils/state';
 export default {
   namespace: 'folderItem',
   state: {
-    name: [],
-    isclick: [true,false]
+    name: 'test',
+    children: [1,2,3],
+    isclick: false,
+    isdevelop: false,
   },
   reducers: {
 

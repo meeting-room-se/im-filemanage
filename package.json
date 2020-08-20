@@ -8,6 +8,7 @@
     "axios": "^0.19.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-jsx-parser": "^1.25.1",
     "umi-plugin-react": "^1.15.8"
   },
   "devDependencies": {
