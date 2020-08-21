@@ -30,15 +30,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="510e4b82-6eaf-4bf1-b558-5571c34ac55b" name="Default Changelist" comment="增加左边栏按钮，">
-      <change afterPath="$PROJECT_DIR$/src/pages/filemanage/models/folderList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/Utils/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/Utils/state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileContent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/folderItem/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/folderItem/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/folderItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/folderItem/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/currentFolder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/models/currentFolder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/folderItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/models/folderItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/components/fileLNav/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/currentFolder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/folderItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/folderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/models/folderList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/models/tableContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/models/tableContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/filemanage/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.eot" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.eot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/filemanage/statics/iconfont/iconfont.svg" afterDir="false" />
@@ -87,14 +89,14 @@
     <property name="ts.external.directory.path" value="D:\WebStorm 2020.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\models" />
+      <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\statics\iconfont" />
       <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\components\fileLNav" />
       <recent name="E:\react 项目\mr-fronted\src\pages" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\models" />
-      <recent name="E:\react 项目\mr-fronted\src\pages\filemanage\components" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -119,7 +121,8 @@
       <workItem from="1597622647438" duration="12890000" />
       <workItem from="1597708835748" duration="12527000" />
       <workItem from="1597795755811" duration="12621000" />
-      <workItem from="1597882185793" duration="21316000" />
+      <workItem from="1597882185793" duration="23567000" />
+      <workItem from="1597968357948" duration="21792000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1597383350757</created>
@@ -156,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597808802890</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1,react-jsx-parse解决字符串转组件&#10;2,解决在模拟数中查找并修改对应属性值，完成文件夹点击效果">
+      <created>1597911482961</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1597911482961</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,24 +217,25 @@
     <MESSAGE value="更新右边表格" />
     <MESSAGE value="增加文件夹项请求逻辑" />
     <MESSAGE value="整理model逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理model逻辑" />
+    <MESSAGE value="1,react-jsx-parse解决字符串转组件&#10;2,解决在模拟数中查找并修改对应属性值，完成文件夹点击效果" />
+    <option name="LAST_COMMIT_MESSAGE" value="1,react-jsx-parse解决字符串转组件&#10;2,解决在模拟数中查找并修改对应属性值，完成文件夹点击效果" />
   </component>
   <component name="WindowStateProjectService">
     <state x="270" y="56" key="SettingsEditor" timestamp="1597710726205">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597710726205" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597808813208">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597911491020">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597808813208" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597911491020" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1597805427772">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1597805427772" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597805236516">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597969414696">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597805236516" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597969414696" />
   </component>
 </project>

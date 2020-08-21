@@ -1,5 +1,6 @@
 import { Button } from 'antd';
-import { setState } from '@/pages/filemanage/Utils/state';
+import { formatTableData, setState } from '@/pages/filemanage/Utils/state';
+import getFolder from '@/pages/filemanage/service';
 export default {
   namespace: 'tableContent',
   state: {
@@ -28,29 +29,55 @@ export default {
         title: 'Download',
         dataIndex: 'download',
         key: 'download',
-        render: () => <Button type={"primary"}>Download</Button>,
+        render(text){
+          return <Button type={"primary"}>Download</Button>
+        },
       },
       {
         title: 'Delete',
         dataIndex: 'delete',
         key: 'delete',
-        render: () => <Button type={"primary"}>Delete</Button>,
+        render: (text) => (<Button type={"primary"}>Delete</Button>)
       },
     ],
-    data: [],
+    data: [
+      {
+        key:"0",
+        name:"pic",
+        type:"folder",
+        size:"",
+        lastmodified:1597979042000,
+
+      },
+      {
+        key:"1",
+        name:"workspace",
+        type:"folder",
+        size:"",
+        lastmodified:1597636059000,
+      }
+    ],
     path: ''
   },
   reducers: {
-    // changeData(state,)
-    // changeTable(state,{ payload }){
-    //   console.log(payload);
-    //   return setState(state,payload);
-    // }
+    changeTable(state,{ payload }) {
+      const list = JSON.parse(JSON.stringify(state.columns));
+      return setState(state,{"columns": list,"data": payload["data"],"path": payload["path"]});
+    }
   },
   effects: {
-    *changeTable(action, { select }) {
-      const data =
-      console.log()
+    *changeData({ payload },{ call, put }) {
+      const data = yield call(getFolder,payload["path"]);
+      yield put({
+        type: 'changeTable',
+        payload:{
+          data: formatTableData(data),
+          path: payload["path"]
+        }
+      })
     }
+  },
+  subscriptions: {
+
   }
 }

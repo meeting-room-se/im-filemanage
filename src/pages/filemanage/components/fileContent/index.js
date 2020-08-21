@@ -5,6 +5,9 @@ import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
 
 function FileContent(props){
+  const columns = props.columns;
+  const data = props.data;
+
   return (
     <div className={styles.Wrapper}>
       {/*搜索*/}
@@ -17,17 +20,19 @@ function FileContent(props){
       </div>
       {/*表格*/}
       <div className={styles.Content}>
-        <h1 className={styles.FolderName}>folderpath:<span>/</span></h1>
-        <Table columns={props.columns} dataSource={props.data} />
+        <h1 className={styles.FolderName}>{props.path}<span>/</span></h1>
+        <Table columns={columns} dataSource={data} />
       </div>
     </div>
   )
 }
 
 function mapStateToProps({ tableContent }){
+  console.log(tableContent.data);
   return {
     columns: tableContent.columns,
-    data: tableContent.data
+    data: tableContent.data,
+    path: tableContent.path
   }
 }
 
