@@ -20,7 +20,7 @@ function FileContent(props){
       </div>
       {/*表格*/}
       <div className={styles.Content}>
-        <h1 className={styles.FolderName}>{props.path}<span>/</span></h1>
+        <h1 className={styles.FolderName}>{props.path}</h1>
         <Table columns={columns} dataSource={data} />
       </div>
     </div>
@@ -28,7 +28,6 @@ function FileContent(props){
 }
 
 function mapStateToProps({ tableContent }){
-  console.log(tableContent.data);
   return {
     columns: tableContent.columns,
     data: tableContent.data,

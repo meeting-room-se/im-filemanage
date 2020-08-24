@@ -110,12 +110,12 @@ export default {
           dispatch({
             type: 'initFolder',
           });
-          // dispatch({
-          //   type: 'tableContent/changeData',
-          //   payload: {
-          //     path: '/'
-          //   }
-          // })
+          dispatch({
+            type: 'tableContent/changeData',
+            payload: {
+              path: '/'
+            }
+          })
         }
       })
     }

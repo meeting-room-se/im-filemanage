@@ -1,4 +1,3 @@
-import isRelativePath from 'umi-plugin-react/lib/utils/isRelativePath';
 
 function getFileType(filename){
   const index = filename.indexOf('.');
@@ -35,6 +34,7 @@ export const formatFolderData = (data) => {
 }
 // 格式化文件夹表数据
 export const formatTableData = (data) => {
+  console.log(data);
   const result = [];
   const files = data["files"];
   const folders = data["folders"];
@@ -46,6 +46,8 @@ export const formatTableData = (data) => {
       type: "folder",
       size: "",
       lastmodified: folders[i]["time"],
+      download: "/"+folders[i]["nameOfFullPath"],
+      delete: "/"+folders[i]["nameOfFullPath"]
     });
     key = key+1;
   }
@@ -53,9 +55,11 @@ export const formatTableData = (data) => {
     result.push({
       key: ""+key,
       name: files[j]["name"],
-      type: "folder",
+      type: getFileType(files[j]["name"]),
       size: files[j]["size"],
       lastmodified: files[j]["time"],
+      download: "/"+files[j]["nameOfFullPath"],
+      delete: "/"+files[j]["nameOfFullPath"]
     })
     key = key+1;
   }
@@ -169,4 +173,18 @@ export const deleteChildrenFolder = (list,path) => {
       }
     }
   }
+}
+
+
+export const formatFileSize = (size) => {
+  // const GB = size / (1024 * 1024 * 1024);
+  // const GB_ = size % (1024 * 1024 * 1024);
+  // const MB = GB_ / 1024;
+  // const MB_ = GB_ % 1024;
+  // const KB = MB_ /1024;
+  if(size === ""){
+    return "";
+  }
+  const result = Math.round(size/1024);
+  return result+"kb";
 }

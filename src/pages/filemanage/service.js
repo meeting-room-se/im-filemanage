@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const remoteurl = 'http://1.zmz121.cn:8010';
+export const remoteurl = 'http://1.zmz121.cn:8010';
 
 // 返回路径的目录内
 export const getFolder = (path) => {
