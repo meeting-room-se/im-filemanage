@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, Button, Table, Modal, Upload, message, Radio} from 'antd'
+import {Input, Button, Table, Modal, Upload, message, Radio, Form} from 'antd'
 import { connect } from 'dva';
 import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
@@ -22,14 +22,26 @@ function FileContent(props){
       <div className={styles.Content}>
         <div style={{verticalAlign: "middle",height: "40px"}}>
           <div className={styles.FolderName}>{props.path}</div>
-          <Button type={'primary'} className={styles.UploadBtn}>上传</Button>
+          <Button type={'primary'} className={styles.UploadBtn} onClick={() => {props.dispatch({type: 'uploadModal/changeVisible',payload: {visible: true}})}}>上传</Button>
+          {/*模态框*/}
           <Modal
             title="FILE UPLOADER"
-            visible="true"
+            visible={props.visible}
+            className={styles.UploadModal}
+            onCancel={
+              () => {
+                props.dispatch({
+                  type: 'uploadModal/changeVisible',
+                  payload: {
+                    visible: false
+                  }
+                })
+              }
+            }
           >
             <Upload
               name="file"
-              multiple="true"
+              multiple={true}
               action={props.uploadurl}
               onChange={
                 (info) => {
@@ -49,9 +61,35 @@ function FileContent(props){
                 click here or drop file here
               </div>
             </Upload>
-            <Radio.Group onChange={}>
-
+            <Radio.Group value={props.radiovalue} style={{ marginTop: "20px",marginLeft: "120px" }} onChange={
+              (e) => {
+                props.dispatch({
+                  type: 'uploadModal/changeRadio',
+                  payload: {
+                    radiovalue: e.target.value
+                  }
+                })
+              }
+            }>
+              <Radio value={1}>UnKeepName</Radio>
+              <Radio value={2}>KeepName</Radio>
             </Radio.Group>
+            <br/>
+            <div className={styles.UploadPath}>
+              <Form>
+                <Form.Item
+                  label="Path"
+                  name="username"
+                  rules={[{ required: true, message: 'Please input your username!' }]}
+                  key={props.path}
+                  initialValue={props.path}
+                >
+                  <Input style={{width: "350px"}} value={props.path}/>
+                </Form.Item>
+              </Form>
+
+            </div>
+
 
 
 
@@ -63,12 +101,14 @@ function FileContent(props){
   )
 }
 
-function mapStateToProps({ tableContent }){
+function mapStateToProps({ tableContent,uploadModal  }){
   return {
     columns: tableContent.columns,
     data: tableContent.data,
     path: tableContent.path,
-    uploadurl: tableContent.uploadurl
+    uploadurl: tableContent.uploadurl,
+    radiovalue: uploadModal.radiovalue,
+    visible: uploadModal.visible
   }
 }
 

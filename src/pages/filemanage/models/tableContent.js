@@ -10,8 +10,7 @@ export default {
     state: {
       columns: [],
       data:[],
-      path: '',
-      uploadurl: ""
+      path: ''
     },
   reducers: {
     changeTable(state,{ payload }) {
@@ -84,8 +83,10 @@ export default {
           render: (text) => (<Button type={"primary"}>Delete</Button>)
         },
       ];
-        return setState(state,{"columns": list,"data": payload["data"],"path": payload["path"]});
-    }
+      return setState(state,{"columns": list,"data": payload["data"],"path": payload["path"]});
+    },
+
+
   },
   effects: {
     *changeData({ payload },{ call, put }) {
