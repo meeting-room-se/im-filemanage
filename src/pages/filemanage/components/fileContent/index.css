@@ -18,7 +18,7 @@
     margin: 0 10px;
 }
 
-.SearchInput{
+#SearchInput{
     width: 40%;
     height: 40px;
     margin-left: 100px;
@@ -28,9 +28,10 @@
 .SearchBtn{
     position: absolute;
     height: 38px;
+    text-align: center;
     margin-left: 10px;
     margin-top: 16px;
-
+    border-radius: 5px;
 }
 
 .More{
@@ -49,11 +50,34 @@
 }
 
 .FolderName{
-    margin-top: 20px;
+    margin-bottom: 0;
     margin-left: 50px;
+    line-height: 40px;
+    width: 50%;
+    float: left;
+    font-size: 20px;
+}
+
+.UploadBtn{
+    float: right;
+    font-size: 16px;
+    height: 34px;
+    margin-top: 3px;
+    vertical-align: middle;
+    right: 240px;
 }
 
 .TableFont{
     font-family: 微软雅黑;
     font-size: 16px;
+}
+
+.AddFile{
+    border: 2px dashed #efefef;
+    height: 100px;
+    width: 300%;
+    line-height: 100px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle !important;
 }

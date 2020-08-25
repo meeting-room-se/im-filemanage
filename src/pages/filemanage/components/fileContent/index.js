@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, Button, Table, Tag, Space} from 'antd'
+import {Input, Button, Table, Modal, Upload, message, Radio} from 'antd'
 import { connect } from 'dva';
 import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
@@ -12,16 +12,52 @@ function FileContent(props){
     <div className={styles.Wrapper}>
       {/*搜索*/}
       <div className={styles.Title}>
-        <Input className={styles.SearchInput}/>
+        <Input id={styles.SearchInput}/>
         <Button type={"primary"} className={styles.SearchBtn}>
-          <span className={icon.iconfont} style={{fontSize: "23px"}}>&#xe60c;</span>
+          <span className={icon.iconfont} style={{marginTop:"-2px",fontSize: "23px"}}>&#xe60c;</span>
         </Button>
         <a className={styles.More}><span className={icon.iconfont} style={{fontSize: "28px"}}>&#xe7ac;</span></a>
       </div>
       {/*表格*/}
       <div className={styles.Content}>
-        <h1 className={styles.FolderName}>{props.path}</h1>
-        <Table columns={columns} dataSource={data} />
+        <div style={{verticalAlign: "middle",height: "40px"}}>
+          <div className={styles.FolderName}>{props.path}</div>
+          <Button type={'primary'} className={styles.UploadBtn}>上传</Button>
+          <Modal
+            title="FILE UPLOADER"
+            visible="true"
+          >
+            <Upload
+              name="file"
+              multiple="true"
+              action={props.uploadurl}
+              onChange={
+                (info) => {
+                  const { status } = info.file;
+                  if (status !== 'uploading') {
+                    console.log(info.file, info.fileList);
+                  }
+                  if (status === 'done') {
+                    message.success(`${info.file.name} file uploaded successfully.`);
+                  } else if (status === 'error') {
+                    message.error(`${info.file.name} file upload failed.`);
+                  }
+                }
+              }
+            >
+              <div className={styles.AddFile}>
+                click here or drop file here
+              </div>
+            </Upload>
+            <Radio.Group onChange={}>
+
+            </Radio.Group>
+
+
+
+          </Modal>
+        </div>
+        <Table columns={columns} dataSource={data} pagination={{position: ['bottomCenter']}}/>
       </div>
     </div>
   )
@@ -31,7 +67,8 @@ function mapStateToProps({ tableContent }){
   return {
     columns: tableContent.columns,
     data: tableContent.data,
-    path: tableContent.path
+    path: tableContent.path,
+    uploadurl: tableContent.uploadurl
   }
 }
 

@@ -10,7 +10,8 @@ export default {
     state: {
       columns: [],
       data:[],
-      path: ''
+      path: '',
+      uploadurl: ""
     },
   reducers: {
     changeTable(state,{ payload }) {
