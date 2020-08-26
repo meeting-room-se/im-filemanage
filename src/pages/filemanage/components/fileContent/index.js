@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {Input, Button, Table, Modal, Upload, message, Radio, Form} from 'antd'
 import { connect } from 'dva';
 import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
+import uploadModal from '@/pages/filemanage/models/uploadModal';
 
 function FileContent(props){
   const columns = props.columns;
   const data = props.data;
+  const uploadpath = useRef(null);
   // 是否显示上传路径函数
   function UploadPath(){
     if(props.havepath){
@@ -20,7 +22,7 @@ function FileContent(props){
             initialValue={props.path}
             style={{ marginBottom: "0" }}
           >
-            <Input style={{width: "350px"}} value={props.path}/>
+            <Input style={{width: "350px"}} value={props.path} ref={uploadpath}/>
           </Form.Item>
         </Form>
       </div>
@@ -64,6 +66,27 @@ function FileContent(props){
                 })
               }
             }
+            onOk={
+              () => {
+                if (props.havepath){
+                  props.dispatch({
+                    type: 'uploadModal/commit',
+                    payload: {
+                      path: uploadpath.current.props.value,
+                      uploadurl: props.uploadurl
+                    }
+                  })
+                }else{
+                  props.dispatch({
+                    type: 'uploadModal/commit',
+                    payload: {
+                      path: "",
+                      uploadurl: props.uploadurl
+                    }
+                  })
+                }
+              }
+            }
           >
             <Upload
               name="file"
@@ -82,14 +105,16 @@ function FileContent(props){
                     message.success(`${info.file.name} file uploaded successfully.`);
                   } else if (status === 'error') {
                     message.error(`${info.file.name} file upload failed.`);
-                  } else if (status === 'remove'){
-                    props.dispatch({
-                      type: 'uploadModal/removeFile',
-                      payload: info.file
-                    })
                   }
                 }
               }
+              // 移除文件回调
+              onRemove={(file) => {
+                props.dispatch({
+                  type: 'uploadModal/removeFile',
+                  payload: file
+                })
+              }}
             >
               <div className={styles.AddFile}>
                 click here or drop file here
@@ -127,7 +152,7 @@ function mapStateToProps({ tableContent,uploadModal  }){
     columns: tableContent.columns,
     data: tableContent.data,
     path: tableContent.path,
-    uploadurl: tableContent.uploadurl,
+    uploadurl: uploadModal.uploadurl,
     radiovalue: uploadModal.radiovalue,
     visible: uploadModal.visible,
     havepath: uploadModal.havepath

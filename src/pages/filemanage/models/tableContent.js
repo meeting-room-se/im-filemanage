@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { formatFileSize, formatTableData, setState } from '@/pages/filemanage/Utils/state';
 import moment from 'moment';
-import getFolder, { remoteurl } from '@/pages/filemanage/service';
+import { getFolder, remoteurl } from '@/pages/filemanage/service';
 import React from 'react';
 import icon from '@/pages/filemanage/statics/iconfont/iconfont.css';
 import styles from '../components/fileContent/index.css'

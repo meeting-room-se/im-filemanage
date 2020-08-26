@@ -5,7 +5,7 @@ import {
   addChildrenFolder,
   formatFolderData,
 } from '@/pages/filemanage/Utils/state';
-import getFolder from '@/pages/filemanage/service';
+import { getFolder } from '@/pages/filemanage/service';
 
 export default {
   namespace: 'folderList',

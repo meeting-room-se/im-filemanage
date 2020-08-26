@@ -1,4 +1,4 @@
-
+// 获得文件类型
 function getFileType(filename){
   const index = filename.indexOf('.');
   if(index === -1){
@@ -6,6 +6,17 @@ function getFileType(filename){
   }else{
     return filename.substring(index+1,filename.length);
   }
+}
+
+// 从filelist中删除file
+export const removeFile = (filelist,file) => {
+  for(var i in filelist){
+    if(filelist[i].uid === file.uid){
+      filelist.splice(i,1);
+      break
+    }
+  }
+  return filelist;
 }
 
 // state:未修改state，map:要修改的数据，map形式
