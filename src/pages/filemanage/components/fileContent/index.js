@@ -86,15 +86,18 @@ function FileContent(props){
                     type: 'uploadModal/commit',
                     payload: {
                       path: uploadpath.current.props.value,
-                      uploadurl: props.uploadurl
+                      uploadurl: props.uploadurl,
+                      filelist: props.filelist
                     }
                   })
                 }else{
+                  console.log(props.filelist);
                   props.dispatch({
                     type: 'uploadModal/commit',
                     payload: {
                       path: "",
-                      uploadurl: props.uploadurl
+                      uploadurl: props.uploadurl,
+                      file: props.filelist[0]
                     }
                   })
                 }
@@ -105,27 +108,16 @@ function FileContent(props){
               key={Math.random()}
               name="file"
               multiple={true}
+              showUploadList={true}
+              fileList={props.filelist}
 
-              onPreview={file => {
-
+              beforeUpload={(file) => {
+                props.dispatch({
+                  type: 'uploadModal/addFile',
+                  payload: file
+                })
+                return false;
               }}
-
-              onChange={
-                (info) => {
-                  const { status } = info.file;
-                  if (status !== 'uploading') {
-                  }
-                  if (status === 'done') {
-                    props.dispatch({
-                      type: 'uploadModal/addFile',
-                      payload: info.file
-                    })
-                    message.success(`${info.file.name} file uploaded successfully.`);
-                  } else if (status === 'error') {
-                    message.error(`${info.file.name} file upload failed.`);
-                  }
-                }
-              }
               // 移除文件回调
               onRemove={(file) => {
                 props.dispatch({
@@ -177,6 +169,7 @@ function mapStateToProps({ tableContent,uploadModal  }){
     havepath: uploadModal.havepath,
     progress: uploadModal.progress,
     haveprogress: uploadModal.haveprogress,
+    filelist: uploadModal.filelist
   }
 }
 

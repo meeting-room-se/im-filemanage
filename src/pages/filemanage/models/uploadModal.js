@@ -17,10 +17,12 @@ export default {
     changeRadio(state, { payload }){
       if(payload["radiovalue"] === 1){
         payload["uploadurl"] = remoteurl+"/file/upload/headpic";
+        payload["filelist"] = [];
         payload["havepath"] = false;
 
       }else{
         payload["uploadurl"] = remoteurl+"/file/upload/small";
+        payload["filelist"] = [];
         payload["havepath"] = true;
       }
       return setState(state,payload);
@@ -44,7 +46,7 @@ export default {
     addFile(state, { payload }){
       const payload_ = {
         "filelist": [...state.filelist,payload]
-      }
+      };
       return setState(state,payload_);
     },
     // 删除filelist中的某一项
@@ -54,14 +56,11 @@ export default {
     },
   },
   effects: {
-    *commit({ payload }, { put, call, select }){
+    *commit({ payload }, { put, call }){
       if(payload.path === ""){
-        const file = yield select(state => state.uploadModal.filelist[0]);
-        const res = yield call(uploadFile,{url: payload["uploadurl"], file: file});
+        const res = yield call(uploadFile,{url: payload["uploadurl"], file: payload["file"]});
       }else{
-        const file = yield select(state => state.uploadModal.filelist);
-        console.log(file);
-        const res = yield call(uploadFile,{put: put,url: payload["uploadurl"], path: payload["path"],filelist: file});
+        const res = yield call(uploadFile,{url: payload["uploadurl"], path: payload["path"],filelist: payload["filelist"]});
       }
 
     }

@@ -1,10 +1,22 @@
 import { Button, message } from 'antd';
 import { formatFileSize, formatTableData, setState } from '@/pages/filemanage/Utils/state';
 import moment from 'moment';
-import { getFolder, remoteurl } from '@/pages/filemanage/service';
+import { deleteRemoteFile, getFolder, remoteurl } from '@/pages/filemanage/service';
 import React from 'react';
 import icon from '@/pages/filemanage/statics/iconfont/iconfont.css';
 import styles from '../components/fileContent/index.css'
+
+
+const onDeleteFile = (text) => {
+  window.g_app._store.dispatch({
+    type: 'tableContent/removeFile',
+    payload: {
+      fileName: text.name,
+      filename: text.path
+    }
+  })
+}
+
 export default {
   namespace: 'tableContent',
     state: {
@@ -13,10 +25,6 @@ export default {
       path: ''
     },
   reducers: {
-
-    removeFile(state,){
-
-    },
 
     changeTable(state,{ payload }) {
       const list = [
@@ -98,7 +106,7 @@ export default {
           width: 150,
           align: 'center',
           className: styles.TableFont,
-          render: (text) => (<Button type={"primary"} onClick={() => {this.removeFile()}}>Delete</Button>)
+          render: (text) => (<Button type={"primary"} onClick={() => (onDeleteFile(text))}>Delete</Button>)
         },
       ];
       return setState(state,{"columns": list,"data": payload["data"],"path": payload["path"]});
@@ -117,6 +125,20 @@ export default {
           path: payload["path"]
         }
       })
+    },
+
+    *removeFile({ payload }, { call, put, select }) {
+      const result = yield call(deleteRemoteFile, {fileName: payload["fileName"],filename: payload["filename"]});
+      const path = yield select(state => state.tableContent.path);
+      const data = yield call(getFolder,path);
+      yield put({
+        type: 'changeTable',
+        payload:{
+          data: formatTableData(data),
+          path: payload["path"]
+        }
+      })
+
     }
   },
   subscriptions: {

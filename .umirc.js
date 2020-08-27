@@ -16,7 +16,9 @@ export default {
       component: '../layouts/index',
       routes: [
         { path: '/', component: '../pages/index' },
-        { path: '/filemanage', component: '../pages/filemanage/index'}
+        { path: '/filemanage', component: '../pages/filemanage/index'},
+        { path: '/test', component: '../pages/test/App' }
+
       ]
     }
   ]

@@ -8,6 +8,7 @@ function getFileType(filename){
   }
 }
 
+
 // 从filelist中删除file
 export const removeFile = (filelist,file) => {
   for(var i in filelist){
@@ -58,7 +59,7 @@ export const formatTableData = (data) => {
       size: "",
       lastmodified: folders[i]["time"],
       download: {path:"/"+folders[i]["nameOfFullPath"], type: getFileType(folders[i]["name"])},
-      delete: "/"+folders[i]["nameOfFullPath"]
+      delete: { path: '/'+folders[i]['nameOfFullPath'], name: folders[i]["name"] }
     });
     key = key+1;
   }
@@ -70,7 +71,7 @@ export const formatTableData = (data) => {
       size: files[j]["size"],
       lastmodified: files[j]["time"],
       download: {path:"/"+files[j]["nameOfFullPath"], type: getFileType(files[j]["name"])},
-      delete: "/"+files[j]["nameOfFullPath"]
+      delete: { path: '/'+files[j]['nameOfFullPath'], name: files[j]["name"] }
     })
     key = key+1;
   }

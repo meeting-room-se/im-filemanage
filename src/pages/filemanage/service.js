@@ -21,28 +21,11 @@ export const getFolder = (path) => {
     })
 }
 
+// 上传文件
 export const uploadFile = (arg) => {
-  if(arg.url === ""){
-    return axios.post(arg.url,{file:arg.file},{
-      onUploadProgress: progressEvent => {
-        let complete = (progressEvent.loaded / progressEvent.total * 100 | 0) + '%'
-      }
-    })
-      .then((res) => {
-        console.log(res);
-        if(res.status === 200){
-          return "success";
-        }else{
-          return Promise.reject();
-        }
-      })
-      .catch((error) => {
-        return Promise.reject(error);
-      })
-  }else{
+  if(arg.url === remoteurl+"/file/upload/headpic"){
     const data = new FormData();
-    data.append("filePath",arg.path);
-    data.append("files[]",arg.filelist);
+    data.append("file",arg.file);
     return axios({
       method: 'post',
       url: arg.url,
@@ -67,9 +50,61 @@ export const uploadFile = (arg) => {
     }).catch((error) => {
       return Promise.reject(error);
     })
+  }else{
+    const data = new FormData();
+    data.append("filePath",arg.path);
+    console.log(arg.filelist);
+    arg.filelist.forEach(file => {
+      console.log(file);
+      data.append('files[]', file);
+    });
+    return axios({
+      method: 'post',
+      url: arg.url,
+      data: data,
+      onUploadProgress: progressEvent => {
+        let complete = (progressEvent.loaded / progressEvent.total * 100 | 0);
+        window.g_app._store.dispatch({
+          type: 'uploadModal/changeState',
+          payload: {
+            progress: complete
+          }
+        });
+        console.log(complete);
+      },
+      headers: {'Content-Type':'multipart/form-data'}
+    }).then((res) => {
+      if(res.status === 200){
+        return "success";
+      }else{
+        return Promise.reject();
+      }
+    }).catch((error) => {
+      return Promise.reject(error);
+    })
 
   }
 }
+
+export const deleteRemoteFile = (arg) => {
+  const data = new FormData();
+  data.append("fileName", arg.fileName);
+  data.append("filename", arg.filename)
+  return axios({
+    method: 'delete',
+    url: remoteurl+"/file/delete",
+    data: data
+  }).then((res) => {
+    if(res.status === 200){
+      return "success";
+    }else{
+      return Promise.reject();
+    }
+  }).catch((error) => {
+    return Promise.reject(error);
+  })
+}
+
 
 
 
