@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import {Input, Button, Table, Modal, Upload, message, Radio, Form} from 'antd'
+import { Input, Button, Table, Modal, Upload, message, Radio, Form, Progress } from 'antd';
 import { connect } from 'dva';
 import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
@@ -50,7 +50,7 @@ function FileContent(props){
       <div className={styles.Content}>
         <div style={{verticalAlign: "middle",height: "40px"}}>
           <div className={styles.FolderName}>{props.path}</div>
-          <Button type={'primary'} className={styles.UploadBtn} onClick={() => {props.dispatch({type: 'uploadModal/changeVisible',payload: {visible: true}})}}>上传</Button>
+          <Button type={'primary'} className={styles.UploadBtn} onClick={() => {props.dispatch({type: 'uploadModal/changeState',payload: {visible: true}})}}>上传</Button>
           {/*模态框*/}
           <Modal
             title="FILE UPLOADER"
@@ -59,7 +59,7 @@ function FileContent(props){
             onCancel={
               () => {
                 props.dispatch({
-                  type: 'uploadModal/changeVisible',
+                  type: 'uploadModal/changeState',
                   payload: {
                     visible: false
                   }
@@ -68,6 +68,19 @@ function FileContent(props){
             }
             onOk={
               () => {
+                if(props.haveprogress){
+                  props.dispatch({
+                    type: 'uploadModal/initModal'
+                  })
+
+                  return
+                }
+                props.dispatch({
+                  type: 'uploadModal/changeState',
+                  payload:{
+                    haveprogress: true
+                  }
+                })
                 if (props.havepath){
                   props.dispatch({
                     type: 'uploadModal/commit',
@@ -89,8 +102,13 @@ function FileContent(props){
             }
           >
             <Upload
+              key={Math.random()}
               name="file"
               multiple={true}
+
+              onPreview={file => {
+
+              }}
 
               onChange={
                 (info) => {
@@ -138,6 +156,7 @@ function FileContent(props){
             {
               UploadPath()
             }
+            {props.haveprogress ? <Progress percent={props.progress}/> : ""}
 
           </Modal>
         </div>
@@ -155,7 +174,9 @@ function mapStateToProps({ tableContent,uploadModal  }){
     uploadurl: uploadModal.uploadurl,
     radiovalue: uploadModal.radiovalue,
     visible: uploadModal.visible,
-    havepath: uploadModal.havepath
+    havepath: uploadModal.havepath,
+    progress: uploadModal.progress,
+    haveprogress: uploadModal.haveprogress,
   }
 }
 

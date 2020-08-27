@@ -8,7 +8,9 @@ export default {
     radiovalue: 1,
     uploadurl: remoteurl+"/file/upload/headpic",
     havepath: false,
-    filelist: []
+    filelist: [],
+    haveprogress: false,
+    progress: 0
   },
   reducers: {
     // 改变上传方式
@@ -23,8 +25,19 @@ export default {
       }
       return setState(state,payload);
     },
-    // 更换整个filelist
-    changeFileList(state, { payload }){
+    changeState(state, { payload }){
+      return setState(state,payload);
+    },
+    initModal(state){
+      const payload={
+        visible: false,
+        radiovalue: 1,
+        uploadurl: remoteurl+"/file/upload/headpic",
+        havepath: false,
+        filelist: [],
+        haveprogress: false,
+        progress: 0
+      }
       return setState(state,payload);
     },
     // 往filelist中添加file
@@ -39,10 +52,6 @@ export default {
       const payload_ = removeFile(state.filelist,payload);
       return setState(state,payload_);
     },
-
-    changeVisible(state,{ payload }){
-      return setState(state,payload);
-    }
   },
   effects: {
     *commit({ payload }, { put, call, select }){
@@ -52,7 +61,7 @@ export default {
       }else{
         const file = yield select(state => state.uploadModal.filelist);
         console.log(file);
-        const res = yield call(uploadFile,{url: payload["uploadurl"], path: payload["path"],filelist: file});
+        const res = yield call(uploadFile,{put: put,url: payload["uploadurl"], path: payload["path"],filelist: file});
       }
 
     }

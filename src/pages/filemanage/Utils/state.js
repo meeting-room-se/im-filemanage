@@ -57,7 +57,7 @@ export const formatTableData = (data) => {
       type: "folder",
       size: "",
       lastmodified: folders[i]["time"],
-      download: "/"+folders[i]["nameOfFullPath"],
+      download: {path:"/"+folders[i]["nameOfFullPath"], type: getFileType(folders[i]["name"])},
       delete: "/"+folders[i]["nameOfFullPath"]
     });
     key = key+1;
@@ -69,7 +69,7 @@ export const formatTableData = (data) => {
       type: getFileType(files[j]["name"]),
       size: files[j]["size"],
       lastmodified: files[j]["time"],
-      download: "/"+files[j]["nameOfFullPath"],
+      download: {path:"/"+files[j]["nameOfFullPath"], type: getFileType(files[j]["name"])},
       delete: "/"+files[j]["nameOfFullPath"]
     })
     key = key+1;

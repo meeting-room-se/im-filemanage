@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { formatFileSize, formatTableData, setState } from '@/pages/filemanage/Utils/state';
 import moment from 'moment';
 import { getFolder, remoteurl } from '@/pages/filemanage/service';
@@ -13,6 +13,11 @@ export default {
       path: ''
     },
   reducers: {
+
+    removeFile(state,){
+
+    },
+
     changeTable(state,{ payload }) {
       const list = [
         {
@@ -70,7 +75,20 @@ export default {
           className: styles.TableFont,
           render(text){
             console.log(text);
-            return <Button type={"primary"}><a href={remoteurl+"/download?fileName="+text} download>Download</a></Button>
+            if(text.type === "folder"){
+              return <Button type={"primary"} onClick={() => {
+                message.info({
+                  content: 'Folder No Download!',
+                  duration: 1,
+                  style: {
+                    marginTop: '50px',
+                    fontSize: '14px'
+                  },
+                })
+              }} >Download</Button>
+            }else{
+              return <Button type={"primary"}><a href={remoteurl+"/download?fileName="+text} download>Download</a></Button>
+            }
           },
         },
         {
@@ -80,11 +98,12 @@ export default {
           width: 150,
           align: 'center',
           className: styles.TableFont,
-          render: (text) => (<Button type={"primary"}>Delete</Button>)
+          render: (text) => (<Button type={"primary"} onClick={() => {this.removeFile()}}>Delete</Button>)
         },
       ];
       return setState(state,{"columns": list,"data": payload["data"],"path": payload["path"]});
     },
+
 
 
   },
