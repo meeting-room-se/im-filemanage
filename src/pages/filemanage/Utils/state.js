@@ -22,10 +22,13 @@ export const removeFile = (filelist,file) => {
 
 // state:未修改state，map:要修改的数据，map形式
 export const setState = (state,map) => {
+  console.log(state);
   const newState = JSON.parse(JSON.stringify(state));
+  console.log(map);
   for(const key in map){
     newState[key] = map[key];
   }
+  console.log(newState);
   return newState;
 }
 

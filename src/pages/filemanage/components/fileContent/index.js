@@ -50,7 +50,7 @@ function FileContent(props){
         <div style={{verticalAlign: "middle",height: "40px"}}>
           <div className={styles.FolderName}>{props.path}</div>
           <Button type={'primary'} className={styles.UploadBtn} onClick={() => {props.dispatch({type: 'uploadModal/changeState',payload: {visible: true}})}}>上传</Button>
-          {/*模态框*/}
+          {/*上传模态框*/}
           <Modal
             title="FILE UPLOADER"
             visible={props.visible}
@@ -103,12 +103,12 @@ function FileContent(props){
               }
             }
           >
+            {/*上传组件*/}
             <Upload
               key={Math.random()}
               name="file"
               multiple={true}
               showUploadList={false}
-              fileList={props.filelist}
 
               beforeUpload={(file) => {
                 props.dispatch({
@@ -117,45 +117,41 @@ function FileContent(props){
                 })
                 return false;
               }}
-              // 移除文件回调
-              onRemove={(file) => {
-                props.dispatch({
-                  type: 'uploadModal/removeFile',
-                  payload: file
-                })
-              }}
-
-              onPreview={(file) => {
-                getBase64(file,(res) => {
-                  props.dispatch({
-                    type: 'uploadModal/changeState',
-                    payload: {
-                      imgshow: true,
-                      imgdata: res
-                    }
-                  })
-                })
-
-              }}
             >
               <div className={styles.AddFile}>
                 click here or drop file here
               </div>
             </Upload>
+            {/*上传文件列表*/}
             {props.filelist.map((value, index) => {
               console.log(value);
               if(value.type === "image/jpeg"){
                 return <div className={styles.FileItem} key={value.name}>
-                  <span className={icon.iconfont} style={{fontSize: "20px", float:"left"}}>&#xe64a;</span>
+                  <span className={icon.iconfont} style={{fontSize: "20px", float:"left", marginLeft: "5px"}}>&#xe64a;</span>
+                  <Popover content={(
+                    <Image width={100} src={props.imgdata}/>
+                  )} trigger="click">
+                    <a style={{marginLeft:"5px",float:"left"}} onClick={() => getBase64(value,(res) => {props.dispatch({ type: 'uploadModal/changeState',payload:{imgdata: res} })})}>{value.name}</a>
+                  </Popover>
+                  <div className={styles.FileItemDelete} style={{float:"right",marginRight:"5px"}} onClick={() => {props.dispatch({
+                    type: 'uploadModal/removeFile',
+                    payload: value
+                  })}}>
+                    <span className={icon.iconfont} style={{fontSize: "20px"}}>&#xe62a;</span></div>
+                  </div>
+              }else{
+                return <div className={styles.FileItem} key={value.name}>
+                  <span className={icon.iconfont} style={{fontSize: "20px", float:"left",marginLeft: "5px"}}>&#xe689;</span>
                   <a style={{marginLeft:"5px",float:"left"}}>{value.name}</a>
-                </div>
+                  <div className={styles.FileItemDelete} style={{float:"right",marginRight:"5px"}} onClick={() => {props.dispatch({
+                    type: 'uploadModal/removeFile',
+                    payload: value
+                  })}} >
+                    <span className={icon.iconfont} style={{fontSize: "20px"}}>&#xe62a;</span></div>
+                  </div>
               }
-              return <div className={styles.FileItem} key={value.name}>{value.name}</div>
             })}
 
-            <div className={props.imgshow ? styles.preview : styles.preview_hidden} >
-              <Image width={50} src={props.imgdata}/>
-            </div>
             {/*上传类型*/}
             <Radio.Group value={props.radiovalue} hidden style={{ marginTop: "20px",marginLeft: "120px"  }} onChange={
             (e) => {
@@ -196,7 +192,6 @@ function mapStateToProps({ tableContent,uploadModal  }){
     progress: uploadModal.progress,
     haveprogress: uploadModal.haveprogress,
     filelist: uploadModal.filelist,
-    imgshow: uploadModal.imgshow,
     imgdata: uploadModal.imgdata
   }
 }

@@ -115,3 +115,13 @@
     background: #f5f5f5;
     border-radius: 3px;
 }
+
+.FileItemDelete{
+    cursor: pointer;
+    color: darkgray;
+    height: 30px;
+}
+
+.FileItemDelete:hover{
+    color: gray;
+}

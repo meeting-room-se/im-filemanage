@@ -97,7 +97,6 @@ export default {
           align: 'center',
           className: styles.TableFont,
           render(text){
-            console.log(text);
             if(text.type === "folder"){
               return <Button type={"primary"} onClick={() => {
                 message.info({

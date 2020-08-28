@@ -30,7 +30,8 @@ export default {
       return setState(state,payload);
     },
     changeState(state, { payload }){
-      return setState(state,payload);
+      // return setState(state,payload);
+      return {...state, ...payload}
     },
     initModal(state){
       const payload={
@@ -41,7 +42,6 @@ export default {
         filelist: [],
         haveprogress: false,
         progress: 0,
-        imgshow: false,
         imgdata: ""
       }
       return setState(state,payload);
@@ -51,12 +51,18 @@ export default {
       const payload_ = {
         "filelist": [...state.filelist,payload]
       };
-      return setState(state,payload_);
+      console.log(payload_);
+      // return setState(state,payload_);
+      return {...state,...payload_}
     },
     // 删除filelist中的某一项
     removeFile(state, { payload }){
-      const payload_ = removeFile(state.filelist,payload);
-      return setState(state,payload_);
+      const payload_ = {
+        "filelist": [...removeFile(state.filelist,payload)],
+      };
+      console.log(payload_);
+      // return setState(state,payload_);
+      return {...state,...payload_}
     },
   },
   effects: {
