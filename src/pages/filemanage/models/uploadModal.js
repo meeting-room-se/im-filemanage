@@ -1,5 +1,5 @@
-import { removeFile, setState } from '@/pages/filemanage/Utils/state';
-import { remoteurl, uploadFile } from '@/pages/filemanage/service';
+import { formatTableData, removeFile, setState } from '@/pages/filemanage/Utils/state';
+import { getFolder, remoteurl, uploadFile } from '@/pages/filemanage/service';
 
 export default {
   namespace: 'uploadModal',
@@ -10,7 +10,9 @@ export default {
     havepath: false,
     filelist: [],
     haveprogress: false,
-    progress: 0
+    progress: 0,
+    imgshow: false,
+    imgdata: ""
   },
   reducers: {
     // 改变上传方式
@@ -38,7 +40,9 @@ export default {
         havepath: false,
         filelist: [],
         haveprogress: false,
-        progress: 0
+        progress: 0,
+        imgshow: false,
+        imgdata: ""
       }
       return setState(state,payload);
     },
@@ -56,11 +60,23 @@ export default {
     },
   },
   effects: {
-    *commit({ payload }, { put, call }){
+    *commit({ payload }, { put, call, select }){
+      var res = "";
       if(payload.path === ""){
-        const res = yield call(uploadFile,{url: payload["uploadurl"], file: payload["file"]});
+        res = yield call(uploadFile,{url: payload["uploadurl"], file: payload["file"]});
       }else{
-        const res = yield call(uploadFile,{url: payload["uploadurl"], path: payload["path"],filelist: payload["filelist"]});
+        res = yield call(uploadFile,{url: payload["uploadurl"], path: payload["path"],filelist: payload["filelist"]});
+      }
+      if(res === 'success'){
+        const path = yield select(state => state.tableContent.path);
+        const data = yield call(getFolder, path);
+        yield put({
+          type: 'tableContent/changeData',
+          payload: {
+            data: formatTableData(data),
+            path: path,
+          }
+        })
       }
 
     }

@@ -54,9 +54,9 @@ export const formatTableData = (data) => {
   for(var i in folders){
     result.push({
       key: ""+key,
-      name: folders[i]["name"],
+      name: {name: folders[i]["name"], type: "folder", path:"/"+folders[i]["nameOfFullPath"]},
       type: "folder",
-      size: "",
+      size: -1,
       lastmodified: folders[i]["time"],
       download: {path:"/"+folders[i]["nameOfFullPath"], type: getFileType(folders[i]["name"])},
       delete: { path: '/'+folders[i]['nameOfFullPath'], name: folders[i]["name"] }
@@ -66,7 +66,7 @@ export const formatTableData = (data) => {
   for(var j in files){
     result.push({
       key: ""+key,
-      name: files[j]["name"],
+      name: { name: files[j]['name'], type: getFileType(files[j]["name"]), path: "/"+files[j]["nameOfFullPath"] },
       type: getFileType(files[j]["name"]),
       size: files[j]["size"],
       lastmodified: files[j]["time"],

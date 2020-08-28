@@ -1,4 +1,4 @@
-import { Button, message } from 'antd';
+import { Button, message, Popover, Image } from 'antd';
 import { formatFileSize, formatTableData, setState } from '@/pages/filemanage/Utils/state';
 import moment from 'moment';
 import { deleteRemoteFile, getFolder, remoteurl } from '@/pages/filemanage/service';
@@ -35,7 +35,16 @@ export default {
           width: 150,
           align: 'center',
           className: styles.TableFont,
+          render(text){
+            if(text.type === 'jpg' || text.type === 'png'){
+              return (<Popover content={(
+                  <Image width={200} src={remoteurl+"/res/file"+text.path}/>
+              )}><a>{text.name}</a></Popover>)
+            }else{
+              return text.name;
+            }
 
+          }
         },
         {
           title: 'Type',
@@ -59,8 +68,13 @@ export default {
           width: 50,
           align: 'center',
           className: styles.TableFont,
+          sorter:(a,b) => a.size - b.size,
           render(text) {
-            return formatFileSize(text);
+            if(text !== -1){
+              return formatFileSize(text);
+            }else{
+              return "";
+            }
           }
         },
         {
@@ -70,6 +84,7 @@ export default {
           width: 150,
           align: 'center',
           className: styles.TableFont,
+          sorter: (a,b) => a.lastmodified - b.lastmodified,
           render(text) {
             return moment(text).format("YYYY/MM/DD HH:mm");
           }

@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
-import { Input, Button, Table, Modal, Upload, message, Radio, Form, Progress } from 'antd';
+import { Input, Button, Table, Modal, Upload, message, Radio, Form, Progress, Popover, Image } from 'antd';
 import { connect } from 'dva';
 import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
-import uploadModal from '@/pages/filemanage/models/uploadModal';
 
 function FileContent(props){
   const columns = props.columns;
@@ -41,8 +40,8 @@ function FileContent(props){
       {/*搜索*/}
       <div className={styles.Title}>
         <Input id={styles.SearchInput}/>
-        <Button type={"primary"} className={styles.SearchBtn}>
-          <span className={icon.iconfont} style={{marginTop:"-2px",fontSize: "23px"}}>&#xe60c;</span>
+        <Button type={"primary"} id={styles.SearchBtn}>
+          <span className={icon.iconfont} style={{fontSize:"22px",marginTop: "-3px"}}>&#xe60c;</span>
         </Button>
         <a className={styles.More}><span className={icon.iconfont} style={{fontSize: "28px"}}>&#xe7ac;</span></a>
       </div>
@@ -108,7 +107,7 @@ function FileContent(props){
               key={Math.random()}
               name="file"
               multiple={true}
-              showUploadList={true}
+              showUploadList={false}
               fileList={props.filelist}
 
               beforeUpload={(file) => {
@@ -125,11 +124,38 @@ function FileContent(props){
                   payload: file
                 })
               }}
+
+              onPreview={(file) => {
+                getBase64(file,(res) => {
+                  props.dispatch({
+                    type: 'uploadModal/changeState',
+                    payload: {
+                      imgshow: true,
+                      imgdata: res
+                    }
+                  })
+                })
+
+              }}
             >
               <div className={styles.AddFile}>
                 click here or drop file here
               </div>
             </Upload>
+            {props.filelist.map((value, index) => {
+              console.log(value);
+              if(value.type === "image/jpeg"){
+                return <div className={styles.FileItem} key={value.name}>
+                  <span className={icon.iconfont} style={{fontSize: "20px", float:"left"}}>&#xe64a;</span>
+                  <a style={{marginLeft:"5px",float:"left"}}>{value.name}</a>
+                </div>
+              }
+              return <div className={styles.FileItem} key={value.name}>{value.name}</div>
+            })}
+
+            <div className={props.imgshow ? styles.preview : styles.preview_hidden} >
+              <Image width={50} src={props.imgdata}/>
+            </div>
             {/*上传类型*/}
             <Radio.Group value={props.radiovalue} hidden style={{ marginTop: "20px",marginLeft: "120px"  }} onChange={
             (e) => {
@@ -169,7 +195,9 @@ function mapStateToProps({ tableContent,uploadModal  }){
     havepath: uploadModal.havepath,
     progress: uploadModal.progress,
     haveprogress: uploadModal.haveprogress,
-    filelist: uploadModal.filelist
+    filelist: uploadModal.filelist,
+    imgshow: uploadModal.imgshow,
+    imgdata: uploadModal.imgdata
   }
 }
 

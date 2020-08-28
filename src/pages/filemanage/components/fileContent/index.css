@@ -21,17 +21,17 @@
 #SearchInput{
     width: 40%;
     height: 40px;
-    margin-left: 100px;
-    margin-top: 15px;
+    margin-left: 200px;
+    margin-top: 14px;
+    padding: 1px 0;
 }
 
-.SearchBtn{
+#SearchBtn{
     position: absolute;
-    height: 38px;
-    text-align: center;
-    margin-left: 10px;
-    margin-top: 16px;
+    height: 35px;
     border-radius: 5px;
+    margin-top: 16px;
+    margin-left: 10px;
 }
 
 .More{
@@ -91,4 +91,27 @@
 .UploadPath{
     margin-top: 20px;
     margin-left: 30px;
+}
+
+.preview{
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+    top: -100px;
+    background: #000;
+}
+
+.preview_hidden{
+    display: none;
+}
+
+.FileItem{
+    width: 400px;
+    height: 30px;
+    margin-left: 35px;
+    line-height: 30px;
+}
+.FileItem:hover{
+    background: #f5f5f5;
+    border-radius: 3px;
 }
