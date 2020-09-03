@@ -109,7 +109,7 @@ export default {
                 })
               }} >Download</Button>
             }else{
-              return <Button type={"primary"}><a href={remoteurl+"/download?fileName="+text} download>Download</a></Button>
+              return <Button type={"primary"}><a href={remoteurl+"/download?fileName="+text.path} download>Download</a></Button>
             }
           },
         },
