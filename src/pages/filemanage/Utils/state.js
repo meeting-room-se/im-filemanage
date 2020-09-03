@@ -22,13 +22,10 @@ export const removeFile = (filelist,file) => {
 
 // state:未修改state，map:要修改的数据，map形式
 export const setState = (state,map) => {
-  console.log(state);
   const newState = JSON.parse(JSON.stringify(state));
-  console.log(map);
   for(const key in map){
     newState[key] = map[key];
   }
-  console.log(newState);
   return newState;
 }
 
@@ -49,7 +46,6 @@ export const formatFolderData = (data) => {
 }
 // 格式化文件夹表数据
 export const formatTableData = (data) => {
-  console.log(data);
   const result = [];
   const files = data["files"];
   const folders = data["folders"];
@@ -192,11 +188,6 @@ export const deleteChildrenFolder = (list,path) => {
 
 
 export const formatFileSize = (size) => {
-  // const GB = size / (1024 * 1024 * 1024);
-  // const GB_ = size % (1024 * 1024 * 1024);
-  // const MB = GB_ / 1024;
-  // const MB_ = GB_ % 1024;
-  // const KB = MB_ /1024;
   if(size === ""){
     return "";
   }

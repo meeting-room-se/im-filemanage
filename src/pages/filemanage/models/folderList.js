@@ -106,7 +106,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname}) => {
-        if(pathname === '/filemanage'){
+        if(pathname === '/'){
           dispatch({
             type: 'initFolder',
           });

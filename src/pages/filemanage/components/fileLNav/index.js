@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import FolderItem from '@/pages/filemanage/components/fileLNav/folderItem';
 import JsxParser from 'react-jsx-parser'
 import { connect } from 'dva';
@@ -19,8 +19,6 @@ function getFolders(list,index){
     }
     return result;
   }
-
-
 }
 
 function FileLNav(props){

@@ -1,7 +1,8 @@
 import axios from 'axios'
-import qs from 'qs'
 
 export const remoteurl = 'http://1.zmz121.cn:8010';
+// export const remoteurl = 'http://172.29.12.13:8010';
+// export const remoteurl = 'http://192.168.2.206:8010';
 
 
 // 返回路径的目录内
@@ -20,6 +21,26 @@ export const getFolder = (path) => {
       return Promise.reject(error);
     })
 }
+
+export const mkDir = (arg) => {
+  const data = new FormData();
+  data.append("dir",arg);
+  return axios({
+    method: 'put',
+    url: remoteurl+'/file/mkdir',
+    data: data,
+
+  }).then((res) => {
+    if(res.status === 200){
+      return "success";
+    }else{
+      return Promise.reject();
+    }
+  }).catch((error) => {
+    return Promise.reject(error);
+  })
+}
+
 
 // 上传文件
 export const uploadFile = (arg) => {

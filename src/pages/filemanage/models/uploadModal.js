@@ -1,10 +1,11 @@
 import { formatTableData, removeFile, setState } from '@/pages/filemanage/Utils/state';
-import { getFolder, remoteurl, uploadFile } from '@/pages/filemanage/service';
+import { getFolder, mkDir, remoteurl, uploadFile } from '@/pages/filemanage/service';
 
 export default {
   namespace: 'uploadModal',
   state: {
     visible: false,
+    mk_visible: false,
     radiovalue: 1,
     uploadurl: remoteurl+"/file/upload/headpic",
     havepath: false,
@@ -84,8 +85,26 @@ export default {
           }
         })
       }
+    },
 
+    *mkdir({ payload }, { put, call, select }){
+      yield call(mkDir, payload.dir);
+      yield put({
+        type: 'changeState',
+        payload: {
+          mk_visible: false
+        }
+      })
+      const data = yield call(getFolder,payload.path);
+      yield put({
+        type: 'tableContent/changeTable',
+        payload:{
+          data: formatTableData(data),
+          path: payload.path.replace(payload.fileName,"")
+        }
+      })
     }
+
   }
 
 

@@ -12,7 +12,7 @@ const onDeleteFile = (text) => {
     type: 'tableContent/removeFile',
     payload: {
       fileName: text.name,
-      filename: text.path
+      path: text.path
     }
   })
 }
@@ -39,7 +39,7 @@ export default {
             if(text.type === 'jpg' || text.type === 'png'){
               return (<Popover content={(
                   <Image width={200} src={remoteurl+"/res/file"+text.path}/>
-              )}><a>{text.name}</a></Popover>)
+              )}><a href={'#'}>{text.name}</a></Popover>)
             }else{
               return text.name;
             }
@@ -142,14 +142,15 @@ export default {
     },
 
     *removeFile({ payload }, { call, put, select }) {
-      const result = yield call(deleteRemoteFile, {fileName: payload["fileName"],filename: payload["filename"]});
+      console.log(payload);
+      const result = yield call(deleteRemoteFile, {fileName: payload["fileName"],filename: payload["path"]});
       const path = yield select(state => state.tableContent.path);
       const data = yield call(getFolder,path);
       yield put({
         type: 'changeTable',
         payload:{
           data: formatTableData(data),
-          path: payload["path"]
+          path: payload.path.replace(payload.fileName,"")
         }
       })
 

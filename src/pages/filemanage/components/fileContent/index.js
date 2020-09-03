@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Input, Button, Table, Modal, Upload, message, Radio, Form, Progress, Popover, Image } from 'antd';
+import { Input, Button, Table, Modal, Upload, Radio, Form, Progress, Popover, Image } from 'antd';
 import { connect } from 'dva';
 import styles from './index.css'
 import icon from '../../statics/iconfont/iconfont.css'
@@ -8,6 +8,7 @@ function FileContent(props){
   const columns = props.columns;
   const data = props.data;
   const uploadpath = useRef(null);
+  const mkdirpath = useRef(null);
   // 是否显示上传路径函数
   function UploadPath(){
     if(props.havepath){
@@ -50,6 +51,7 @@ function FileContent(props){
         <div style={{verticalAlign: "middle",height: "40px"}}>
           <div className={styles.FolderName}>{props.path}</div>
           <Button type={'primary'} className={styles.UploadBtn} onClick={() => {props.dispatch({type: 'uploadModal/changeState',payload: {visible: true}})}}>上传</Button>
+          <Button type={'primary'} className={styles.MkdirBtn} onClick={() => {props.dispatch({type: 'uploadModal/changeState',payload: {mk_visible: true}})}}>创建文件夹</Button>
           {/*上传模态框*/}
           <Modal
             title="FILE UPLOADER"
@@ -173,6 +175,49 @@ function FileContent(props){
             {props.haveprogress ? <Progress percent={props.progress}/> : ""}
 
           </Modal>
+
+          <Modal
+            title="MKDIR"
+            visible={props.mk_visible}
+            onCancel={
+              () => {
+                props.dispatch({
+                  type: 'uploadModal/changeState',
+                  payload: {
+                    mk_visible: false
+                  }
+                })
+              }
+            }
+            onOk={
+              () => {
+                props.dispatch({
+                  type: 'uploadModal/mkdir',
+                  payload: {
+                    dir: mkdirpath.current.props.value,
+                    path: props.path
+                  }
+                })
+              }
+            }
+          >
+            <div>
+              <Form>
+                <Form.Item
+                  label="Path"
+                  name="username"
+                  rules={[{ required: true, message: 'Please input your username!' }]}
+                  key={props.path}
+                  initialValue={props.path}
+                  style={{ marginBottom: "0"}}
+                >
+                  <Input style={{width: "400px"}} value={props.path} ref={mkdirpath}/>
+                </Form.Item>
+              </Form>
+            </div>
+
+          </Modal>
+
         </div>
         <Table columns={columns} dataSource={data} pagination={{position: ['bottomCenter']}}/>
       </div>
@@ -188,6 +233,7 @@ function mapStateToProps({ tableContent,uploadModal  }){
     uploadurl: uploadModal.uploadurl,
     radiovalue: uploadModal.radiovalue,
     visible: uploadModal.visible,
+    mk_visible: uploadModal.mk_visible,
     havepath: uploadModal.havepath,
     progress: uploadModal.progress,
     haveprogress: uploadModal.haveprogress,

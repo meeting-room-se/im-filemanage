@@ -67,6 +67,15 @@
     right: 240px;
 }
 
+.MkdirBtn{
+    float: right;
+    font-size: 16px;
+    height: 34px;
+    margin-top: 3px;
+    vertical-align: middle;
+    right: 260px;
+}
+
 .TableFont{
     font-family: 微软雅黑;
     font-size: 16px;
