@@ -108,13 +108,12 @@ export const uploadFile = (arg) => {
 }
 
 export const deleteRemoteFile = (arg) => {
-  const data = new FormData();
-  data.append("fileName", arg.fileName);
-  data.append("filename", arg.filename)
   return axios({
     method: 'delete',
     url: remoteurl+"/file/delete",
-    data: data
+    data: {
+      filename: arg.filename
+    }
   }).then((res) => {
     if(res.status === 200){
       return "success";
